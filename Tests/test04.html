@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ttt</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" 
+			content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<link rel="stylesheet" type="text/css" href="test01.css" />
+	</head>
+	<body>
+		<h1>Space Travelers</h1>
+		<div class="space">
+
+		</div>
+
+		<div id='gameCanvas'>
+			<canvas id="canvas"></canvas>
+		</div>
+		<script src='../res/three.min.js'></script>
+		<script src='../res/keyboard.js'></script>
+		<script src='../res/webgl-utils.js'></script>
+		<script src='../res/webgl-lessons-ui.js'></script>
+		<div id='scoreboard'>
+			<h1 id='scores'>000000</h1>
+			<h1 id='title'>Space Traveler</h1>
+			<h2 id='winnerBoard'>Happy Hunting!</h2>
+			<h3>S - move down
+			<br>W - move up</h3>
+		</div>
+		<div id="uiContainer">
+		  <div id="ui">
+		    <div id="x"></div>
+		    <div id="y"></div>
+		    <div id="angle"></div>
+		    <div id="scaleX"></div>
+		    <div id="scaleY"></div>
+		  </div>
+		</div>
+	</body>
+
+		<!-- vertex shader -->
+		<script id="2d-vertex-shader" type="x-shader/x-vertex">
+			attribute vec2 a_position;
+
+			uniform mat3 u_matrix;
+
+			void main() {
+			  //Multiply the position by the matrix
+			  gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+			}
+		</script>
+		<!-- fragment shader -->
+		<script id="2d-fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+
+			uniform vec4 u_color;
+
+			void main() {
+			   gl_FragColor = u_color;
+			}
+		</script>
+		
+		<script src='test04.js'></script>
+</html>
